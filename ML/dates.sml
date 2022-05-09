@@ -19,8 +19,8 @@ fun number_in_month(months : (int * int * int) list, number) =
    then 1 + number_in_month(tl months, number)
    else number_in_month(tl months, number)
 
-(* Produce the number of dates in the list of dates that are in any of the months in the list of months. *)
-fun number_in_months(months : (int * int * int) list, numbers : int list) =
+(* Produce the number of dates in the list of dates that are in any of the months in the list of months (numbers). *)
+fun number_in_months(months, numbers) =
    if null numbers
    then 0
    else number_in_month(months, hd numbers) 
