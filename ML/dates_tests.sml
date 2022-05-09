@@ -4,17 +4,22 @@
 (* All the tests should evaluate to true. For example, the REPL should say: val test1 = true : bool *)
 (* use "dates.sml"; use "dates_tests.sml"; *)
 
-val test1_older = is_older((1,2,3),(2,3,4)) = true
-val test2_older = is_older((2,2,2),(2,2,2)) = false
-val test3_older = is_older((2,3,4),(1,2,3)) = false
+val test1_older = is_older((1, 2, 3), (2, 3, 4)) = true
+val test2_older = is_older((2, 2, 2), (2, 2, 2)) = false
+val test3_older = is_older((2, 3, 4), (1, 2, 3)) = false
 
-val test1_number_in_month = number_in_month([(2012,2,28),(2013,12,1)],2) = 1
-val test2_number_in_month = number_in_month([(2012,2,28),(2013,2,1)],2) = 2
-val test3_number_in_month = number_in_month([(2012,2,28),(2013,12,1)],3) = 0
+val test1_number_in_month = number_in_month([(2012, 2, 28), (2013, 12, 1)],2) = 1
+val test2_number_in_month = number_in_month([(2012, 2, 28), (2013, 2, 1)],2) = 2
+val test3_number_in_month = number_in_month([(2012, 2, 28), (2013, 12, 1)],3) = 0
+
+val test1_number_in_months = number_in_months(
+        [(2012, 2, 28), (2013, 12, 1), (2011, 3, 31), (2011, 4, 28)],
+        [2, 3, 4]) = 3
+val test2_number_in_months = number_in_months(
+        [(2012, 2, 28), (2013, 12, 1), (2011, 3, 31), (2011, 4, 28)],
+        [5, 6, 7]) = 0
 
 (*
-
-val test3 = number_in_months ([(2012,2,28),(2013,12,1),(2011,3,31),(2011,4,28)],[2,3,4]) = 3
 
 val test4 = dates_in_month ([(2012,2,28),(2013,12,1)],2) = [(2012,2,28)]
 
