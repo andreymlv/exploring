@@ -2,14 +2,18 @@
 
 (* Evaluates to true if the first argument is a date that comes before the second argument.
    If the two dates are the same,the result is false. *)
-fun is_older((year_1, month_1, day_1), (year_2, month_2, day_2)) =
-  if year_1 < year_2
-  then true
-  else if month_1 < month_2
-  then true
-  else if day_1 < day_2
-  then true
-  else false
+fun is_older((y1, m1, d1), (y2, m2, d2)) =
+  let
+    fun cmp (v1, v2, cmpnext) = 
+      case Int.compare (v1, v2) of
+        EQUAL => cmpnext ()
+      | r => r
+  in
+    cmp(y1, y2,
+    fn _ => cmp(m1, m2,
+    fn _ => cmp(d1, d2,
+    fn _ => EQUAL))) = LESS
+  end
 
 (* Produce how many dates in the list are in the given month. *)
 fun number_in_month(dates : (int * int * int) list, month) = 
