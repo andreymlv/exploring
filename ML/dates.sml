@@ -59,3 +59,14 @@ fun get_nth (l: string list, i: int) =
   in
     loop (l, i)
   end
+
+(* Produce a string of the form January 20, 2013 *)
+fun date_to_string ((y, m, d)) = ""
+
+fun number_before_reaching_sum (num, l) = 0
+
+fun what_month(day) = ceil (real (day) / (365.0 / 12.0))
+
+fun month_range(from, to) = []
+
+fun oldest(dates) = NONE
