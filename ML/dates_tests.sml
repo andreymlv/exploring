@@ -21,12 +21,9 @@ val test1_dates_in_month = dates_in_month([(2012, 2, 28), (2013, 12, 1)], 2) = [
 val test2_dates_in_month = dates_in_month([(2012, 2, 28), (2013, 2, 1)], 2) = [(2012, 2, 28), (2013, 2, 1)]
 val test3_dates_in_month = dates_in_month([(2012, 2, 28), (2013, 12, 1)], 4) = []
 
-(* val test1_dates_in_months = dates_in_months (
-  [(2012, 2, 28), (2013, 12, 1), (2011, 3, 31),(2011, 4, 28)],
-  [2, 3, 4]) = [(2012, 2, 28), (2011, 3, 31), (2011, 4, 28)]
-val test2_dates_in_months = dates_in_months (
-  [(2012, 2, 28), (2013, 12, 1), (2011, 3, 31),(2011, 4, 28)],
-  [2, 3, 4]) = [(2012, 2, 28), (2011, 3, 31), (2011, 4, 28)] *)
+val test1_dates_in_months = dates_in_months([(2012, 2, 28), (2013, 12, 1), (2011, 3, 31),(2011, 4, 28)],[2, 3, 4]) = [(2012, 2, 28), (2011, 3, 31), (2011, 4, 28)]
+val test2_dates_in_months = dates_in_months([(2012, 2, 28), (2013, 12, 1), (2011, 3, 31),(2011, 4, 28)],[]) = []
+val test3_dates_in_months = dates_in_months([(2012, 2, 28), (2013, 12, 1), (2011, 3, 31),(2011, 4, 28)],[6, 7, 8]) = []
 
 (*
 val test6 = get_nth (["hi", "there", "how", "are", "you"], 2) = "there"

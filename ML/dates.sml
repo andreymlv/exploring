@@ -1,4 +1,5 @@
-(* Homework #1 for Coursera course Programming Languages: Part A. *)
+(* Homework #1 for Coursera course Programming Languages: Part A. 
+   To test this type in sml promt: - use "dates_tests.sml";*)
 
 (* Evaluates to true if the first argument is a date that comes before the second argument.
    If the two dates are the same,the result is false. *)
@@ -17,13 +18,30 @@ fun is_older((y1, m1, d1), (y2, m2, d2)) =
 
 (* Produce how many dates in the list are in the given month. *)
 fun number_in_month(dates : (int * int * int) list, month) = 
-  length (List.filter (fn (date) => #2 date = month) dates)
+  length (List.filter
+    (fn (date) => #2 date = month)
+    dates)
 
 (* Produce the number of dates in the list of dates that are in any of the months in the list of months. *)
 fun number_in_months(dates, months) =
-  foldl op+ 0 (map (fn (month) => number_in_month(dates, month)) months)
+  foldl op+ 0 
+    (map
+      (fn (month) => number_in_month(dates, month))
+      months)
 
 (* Produce a list holding the dates from the argument list of dates that are in the month.
    The returned list should contain dates in the order they were originally given. *)
 fun dates_in_month(dates : (int * int * int) list, month) =
-  List.filter (fn (date) => #2 date = month) dates
+  List.filter
+    (fn (date) => #2 date = month)
+    dates
+
+(* Produce a list holding the dates from the argument list of dates that are in any of the months in the list of months. *)
+fun dates_in_months(dates, months) =
+  map 
+    (fn (date) => #1 (valOf date)) 
+    (List.filter 
+      isSome
+      (map
+        (fn (month) => List.getItem(dates_in_month(dates, month)))
+        months))
