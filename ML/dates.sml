@@ -13,12 +13,11 @@ fun is_older((year_1, month_1, day_1), (year_2, month_2, day_2)) =
 
 (* Produce how many dates in the list are in the given month. *)
 fun number_in_month(dates : (int * int * int) list, month) = 
-  List.length(List.filter (fn (date) => #2 date = month) dates)
+  length (List.filter (fn (date) => #2 date = month) dates)
 
 (* Produce the number of dates in the list of dates that are in any of the months in the list of months. *)
-fun number_in_months(_, []) = 0
-  | number_in_months(dates, months) = number_in_month(dates, hd months) 
-                                    + number_in_months(dates, tl months)
+fun number_in_months(dates, months) =
+  foldl op+ 0 (map (fn (month) => number_in_month(dates, month)) months)
 
 (* Produce a list holding the dates from the argument list of dates that are in the month.
    The returned list should contain dates in the order they were originally given. *)
