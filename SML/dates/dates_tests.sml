@@ -40,8 +40,6 @@ val test2_date_to_string = date_to_string (2022, 12, 28) = "December 28, 2022"
 
 val test1_number_before_reaching_sum = number_before_reaching_sum (10, [1, 2, 3,
   4, 5]) = 3
-val test2_number_before_reaching_sum = number_before_reaching_sum (10, [4, 3, 2,
-  1, 5]) = 2
 
 val test1_what_month = what_month 70 = 3
 val test2_what_month = what_month 128 = 5
@@ -50,3 +48,4 @@ val test1_month_range = month_range (31, 34) = [1, 2, 2, 2]
 
 val test1_oldest = oldest ([(2012, 2, 28), (2011, 3, 31), (2011, 4, 28)]) = SOME
   (2011, 3, 31)
+val test2_oldest = oldest ([]) = NONE

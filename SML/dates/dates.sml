@@ -76,15 +76,38 @@ fun date_to_string ((y, m, d)) = month_from_number m ^ " " ^ (Int.toString d) ^
 
 (* Produce an int n such that the first n elements of the list add to less than
  * sum, but the first n + 1 elements of the list add to sum or more. *)
-fun number_before_reaching_sum (num, l) = 0
+fun number_before_reaching_sum (sum, poslist) =
+  if sum <= hd poslist
+    then 0
+  else 1 + number_before_reaching_sum (sum - hd poslist, tl poslist)
 
 (* Produce what month that day is in (1 for January, 2 for February, etc.) *)
-fun what_month (day) = ceil (real (day) / (365.0 / 12.0))
+fun what_month (day) =
+  let 
+    val days_in_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+  in 
+    number_before_reaching_sum(day, days_in_months) + 1
+  end
 
-(* Produce an int list [m1,m2,...,mn] where m1 is the month of day1, m2 is the
- * month of day1+1, ..., and mn is the month of day day2. *)
-fun month_range (from, to) = []
+(* Produce an int list [m1, m2, ..., mn] where m1 is the month of day1, m2 is the
+ * month of day1+1, ..., and mn is the month of day day2.
+ * Lenght of output is day2 - day1 + 1 or 0 if day1 > day2. *)
+fun month_range (day1, day2) =
+  if day1 > day2
+    then []
+  else what_month day1 :: month_range (day1 + 1, day2)
 
 (* Produce NONE if the list has no dates and SOME d if the date d is the oldest
  * date in the list. *)
-fun oldest (dates) = NONE
+fun oldest (dates) =
+  if null dates
+    then NONE
+  else
+    let
+      val tl_ans = oldest (tl dates)
+    in
+      if not (isSome tl_ans) orelse is_older (hd dates, valOf tl_ans)
+        then SOME (hd dates)
+      else tl_ans
+    end
+
