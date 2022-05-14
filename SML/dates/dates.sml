@@ -74,14 +74,17 @@ fun month_from_number (month) = get_nth (["January", "February", "March",
 fun date_to_string ((y, m, d)) = month_from_number m ^ " " ^ (Int.toString d) ^
   ", " ^ (Int.toString y)
 
-(*  *)
+(* Produce an int n such that the first n elements of the list add to less than
+ * sum, but the first n + 1 elements of the list add to sum or more. *)
 fun number_before_reaching_sum (num, l) = 0
 
-(*  *)
+(* Produce what month that day is in (1 for January, 2 for February, etc.) *)
 fun what_month (day) = ceil (real (day) / (365.0 / 12.0))
 
-(*  *)
+(* Produce an int list [m1,m2,...,mn] where m1 is the month of day1, m2 is the
+ * month of day1+1, ..., and mn is the month of day day2. *)
 fun month_range (from, to) = []
 
-(*  *)
+(* Produce NONE if the list has no dates and SOME d if the date d is the oldest
+ * date in the list. *)
 fun oldest (dates) = NONE
