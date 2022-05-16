@@ -57,10 +57,8 @@ fun dates_in_months (dates, months) =
 (* Produce nth element of the list where the head of the list is 1st. *)
 fun get_nth (l: string list, i: int) = 
   let
-    fun loop (l, i) =
-      case l of
-        [] => ""
-      | x :: l =>
+    fun loop ([], i) = ""
+      | loop (x :: l, i) =
           if i = 1
             then x
           else loop (l, i - 1)
