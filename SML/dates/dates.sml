@@ -1,6 +1,9 @@
 (* Homework #1 for Coursera course Programming Languages: Part A. 
    To test this type in sml promt: - use "dates_tests.sml"; *)
 
+(*  date is (int * int * int): year, month, day  *)
+type date = int * int * int
+
 (* Evaluates to true if the first argument is a date that comes before the
  * second argument.
  * If the two dates are the same,the result is false. *)
@@ -18,7 +21,7 @@ fun is_older ((y1, m1, d1), (y2, m2, d2)) =
   end
 
 (* Produce how many dates in the list are in the given month. *)
-fun number_in_month (dates: (int * int * int) list, month) = 
+fun number_in_month (dates: date list, month) = 
   length (List.filter
     (fn (date) => #2 date = month)
     dates)
@@ -35,7 +38,7 @@ fun number_in_months (dates, months) =
  * the month.
  * The returned list should contain dates in the order they were originally
  * given. *)
-fun dates_in_month (dates: (int * int * int) list, month) =
+fun dates_in_month (dates: date list, month) =
   List.filter
     (fn (date) => #2 date = month)
     dates
@@ -71,7 +74,7 @@ fun month_from_number (month) = get_nth (["January", "February", "March",
   "December"], month)
 
 (* Produce a string of the form "January 20, 2013". *)
-fun date_to_string ((y, m, d)) = month_from_number m ^ " " ^ (Int.toString d) ^
+fun date_to_string (y, m, d) = month_from_number m ^ " " ^ (Int.toString d) ^
   ", " ^ (Int.toString y)
 
 (* Produce an int n such that the first n elements of the list add to less than
