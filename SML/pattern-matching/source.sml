@@ -37,17 +37,17 @@ fun get_substitutions1 (lst: string list list, s: string): string list =
 (*  returns list of other strings from lists that contain given string
  *  assumes each list has no repetitions, is tail recursive  *)
 fun get_substitutions2(lst: string list list, s: string): string list =
-    let
-        fun aux(lst: string list list, s: string, acc: string list): string list =
-            case lst of
-              [] => acc
-            | x :: xs =>
-                case all_except_option(s, x) of
-                  NONE   => aux(xs, s, acc)
-                | SOME y => aux(xs, s, acc @ y)
-    in
-        aux(lst, s, [])
-    end
+  let
+    fun aux(lst: string list list, s: string, acc: string list): string list =
+      case lst of
+        [] => acc
+      | x :: xs =>
+          case all_except_option(s, x) of
+            NONE   => aux(xs, s, acc)
+          | SOME y => aux(xs, s, acc @ y)
+  in
+    aux(lst, s, [])
+  end
 
 (*
 (* you may assume that Num is always used with values 2, 3, ..., 10
