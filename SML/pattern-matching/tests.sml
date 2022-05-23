@@ -1,12 +1,21 @@
 (* Homework2 Simple Test *)
 (* These are basic test cases. Passing these tests does not guarantee that your code will pass the actual homework grader *)
-(* To run the test, add a new line to the top of this file: use "homeworkname.sml"; *)
 (* All the tests should evaluate to true. For example, the REPL should say: val test1 = true : bool *)
+use "source.sml";
 
-val test1 = all_except_option ("string", ["string"]) = SOME []
+val test1_all_except_option = all_except_option ("string", ["string"]) = SOME []
+val test2_all_except_option = all_except_option ("string", ["test", "string", "another one"]) = SOME ["test", "another one"]
+val test3_all_except_option = all_except_option ("", ["string"]) = NONE
 
-val test2 = get_substitutions1 ([["foo"],["there"]], "foo") = []
-
+val test1_get_substitutions1 = get_substitutions1 ([["foo"],
+                                                    ["there"]], "foo") = []
+val test2_get_substitutions1 = get_substitutions1 ([["Fred", "Fredrick"],
+                                                    ["Elizabeth", "Betty"],
+                                                    ["Freddie", "Fred", "F"]], "Fred") = ["Fredrick", "Freddie", "F"]
+val test3_get_substitutions1 = get_substitutions1 ([["Fred", "Fredrick"],
+                                                    ["Jeff", "Jeffrey"],
+                                                    ["Geoff", "Jeff", "Jeffrey"]], "Jeff") = ["Jeffrey", "Geoff", "Jeffrey"]
+(*
 val test3 = get_substitutions2 ([["foo"],["there"]], "foo") = []
 
 val test4 = similar_names ([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]], {first="Fred", middle="W", last="Smith"}) =
@@ -37,4 +46,4 @@ val test13 = ((officiate([(Clubs,Jack),(Spades,Num(8))],
                          42);
                false) 
               handle IllegalMove => true)
-
+*)
