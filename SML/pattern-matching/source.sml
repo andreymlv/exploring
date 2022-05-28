@@ -16,12 +16,15 @@ fun all_except_option (s: string, lst: string list): string list option =
     [] => NONE
   | x :: xs =>
     let
-      val other = all_except_option (s, xs)
-      val is_same = same_string (s, x)
+      val rest = all_except_option (s, xs)
     in
-      case other of
-        NONE   => if is_same then SOME (xs) else NONE
-      | SOME y => if is_same then other else SOME (x :: y)
+      case rest of
+        NONE   => if s = x 
+                    then SOME (xs)
+                  else NONE
+      | SOME y => if s = x
+                    then rest
+                  else SOME (x :: y)
     end
 
 (* The result has all the strings that are in some list in substitutions that also has s,

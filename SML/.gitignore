@@ -7,3 +7,7 @@
 .cm/
 
 # End of https://www.toptal.com/developers/gitignore/api/standardml
+
+# def use
+*.du
+*.ud
